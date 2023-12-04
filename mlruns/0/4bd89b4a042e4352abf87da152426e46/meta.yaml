@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/abpaul/Documents/Learnings/iNeuron/MLProjects/CreditCardDefaultPrediction/mlruns/0/4bd89b4a042e4352abf87da152426e46/artifacts
+end_time: 1701708325177
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 4bd89b4a042e4352abf87da152426e46
+run_name: loud-dolphin-797
+run_uuid: 4bd89b4a042e4352abf87da152426e46
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1701708319798
+status: 3
+tags: []
+user_id: abpaul

@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/abpaul/Documents/Learnings/iNeuron/MLProjects/CreditCardDefaultPrediction/mlruns/0/2f13ff2ed7f94668879d0e6f0c4997af/artifacts
+end_time: 1701714224715
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 2f13ff2ed7f94668879d0e6f0c4997af
+run_name: capricious-trout-66
+run_uuid: 2f13ff2ed7f94668879d0e6f0c4997af
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1701714216901
+status: 3
+tags: []
+user_id: abpaul

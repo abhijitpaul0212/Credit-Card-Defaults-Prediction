@@ -7,4 +7,5 @@ seaborn
 statsmodels
 imblearn
 mlflow
+flask
 -e .

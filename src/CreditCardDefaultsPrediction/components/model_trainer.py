@@ -24,6 +24,7 @@ class ModelTrainerConfig:
     This is configuration class for Model Trainer
     """
     trained_model_obj_path: str = os.path.join("artifacts", "model.pkl")
+    trained_model_report_path: str = os.path.join('artifacts', 'model_report.pkl')
 
 
 class ModelTrainer:
@@ -42,15 +43,15 @@ class ModelTrainer:
                 val_dataframe.iloc[:, -1])
 
             models = (
-                {
-                    GaussianNB(): {
-                        'var_smoothing': np.logspace(0,-9, num=100)
-                        }},
                 # {
-                #     LogisticRegression(): {
-                #         'penalty': ['l2'],
-                #         'C': [0.01, 0.1, 1, 10, 100]
-                #         }},
+                    # GaussianNB(): {
+                    #     'var_smoothing': np.logspace(0,-9, num=100)
+                    #     }},
+                {
+                    LogisticRegression(): {
+                        'penalty': ['l2'],
+                        'C': [0.01, 0.1, 1, 10, 100]
+                        }},
                 {
                     SVC(): {
                         'kernel': ['poly', 'rbf', 'sigmoid'],
@@ -61,47 +62,53 @@ class ModelTrainer:
                 #     AdaBoostClassifier(): { 
                 #         'n_estimators': [100, 500, 1000, 5000]
                 #         }},
-                # {
-                #     RandomForestClassifier(): { 
-                #         'n_estimators': [50, 100, 150, 200],
-                #         'criterion': ["gini", "entropy", "log_loss"],
-                #         "max_features": ["auto", "sqrt", "log2"],
-                #         "min_samples_leaf": [5, 10, 20, 50, 100],
-                #         "max_depth": range(2, 20, 3)   
-                #         }},
-                # {
-                #     GradientBoostingClassifier(): { 
-                #         'n_estimators': [100, 500, 1000, 5000],
-                #         'max_depth': range(5,16,2), 
-                #         'min_samples_split': range(200,2100,200),
-                #         'min_samples_leaf': range(30,71,10),
-                #         'max_features': range(7,20,2),
-                #         'subsample': [0.6,0.7,0.75,0.8,0.85,0.9]
-                #         }},
-                # {
-                #     KNeighborsClassifier(): { 
-                #         'n_neighbors': [2, 5, 7, 9, 11, 13, 15, 30, 60],
-                #         'weights': ['uniform', 'distance'],
-                #         'metric': ['minkowski', 'euclidean', 'manhattan'],
-                #         "algorithm": ["auto", "ball_tree", "kd_tree", "brute"]
-                #         }},
-                # {
-                #     DecisionTreeClassifier(): {
-                #         'criterion': ["gini", "entropy", "log_loss"],
-                #         "max_features": ["auto", "sqrt", "log2"],
-                #         "min_samples_leaf": [5, 10, 20, 50, 100],
-                #         "max_depth": [2, 3, 5, 10, 20]    
-                #         }}
+                {
+                    RandomForestClassifier(): { 
+                        'n_estimators': [50, 100, 150, 200],
+                        'criterion': ["gini", "entropy", "log_loss"],
+                        "max_features": ["auto", "sqrt", "log2"],
+                        "min_samples_leaf": [5, 10, 20, 50, 100],
+                        "max_depth": range(2, 20, 3)   
+                        }},
+                {
+                    GradientBoostingClassifier(): { 
+                        'n_estimators': [100, 500, 1000, 5000],
+                        'max_depth': range(5,16,2), 
+                        'min_samples_split': range(200,2100,200),
+                        'min_samples_leaf': range(30,71,10),
+                        'max_features': range(7,20,2),
+                        'subsample': [0.6,0.7,0.75,0.8,0.85,0.9]
+                        }},
+                {
+                    KNeighborsClassifier(): { 
+                        'n_neighbors': [2, 5, 7, 9, 11, 13, 15, 30, 60],
+                        'weights': ['uniform', 'distance'],
+                        'metric': ['minkowski', 'euclidean', 'manhattan'],
+                        "algorithm": ["auto", "ball_tree", "kd_tree", "brute"]
+                        }},
+                {
+                    DecisionTreeClassifier(): {
+                        'criterion': ["gini", "entropy", "log_loss"],
+                        "max_features": ["auto", "sqrt", "log2"],
+                        "min_samples_leaf": [5, 10, 20, 50, 100],
+                        "max_depth": [2, 3, 5, 10, 20]    
+                        }}
                 )
             
-            best_model, model_report_val = self.utils.evaluate_models(models, X_train, y_train, X_val, y_val)
+            best_model, model_report = self.utils.evaluate_models(models, X_train, y_train, X_val, y_val)
 
-            logging.info("Best Model Report on Validation Dataset: {}".format(model_report_val))
+            logging.info("Best Model Report on Validation Dataset: {}".format(model_report))
             
             self.utils.save_object(
                  file_path=self.model_trainer_config.trained_model_obj_path,
                  obj=best_model
             )
+
+            self.utils.save_object(
+                 file_path=self.model_trainer_config.trained_model_report_path,
+                 obj=model_report
+            )
+          
 
             # model_report_test = self.utils.predict(best_model, X_test, y_test)
             # logging.info("Best Model Report on Test Dataset: {}".format(model_report_test))          
@@ -109,5 +116,16 @@ class ModelTrainer:
         except Exception as e:
             raise CustomException(e, sys)
 
-    def show_model_score():
-        pass
+    def show_model_score(self):
+        try:
+            model_report = self.utils.load_object(ModelTrainerConfig().trained_model_report_path)
+            # logging.info(f'Model Report : {model_report}')
+
+            # To get best model score from dictionary 
+            best_model_score = model_report.get('Accuracy Score')
+            best_model_name = str(model_report.get('Model')).split("()")[0]
+            logging.info(f'Best Model Found , Model Name : {best_model_name} , Accuracy Score: {best_model_score}')
+            return best_model_score
+        
+        except Exception as e:
+            raise CustomException(e, sys)  # type: ignore

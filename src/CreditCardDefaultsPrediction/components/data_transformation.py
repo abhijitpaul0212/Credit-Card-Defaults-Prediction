@@ -8,7 +8,7 @@ from src.CreditCardDefaultsPrediction.logger import logging
 from src.CreditCardDefaultsPrediction.exception import CustomException
 from src.CreditCardDefaultsPrediction.utils.utils import Utils
 from src.CreditCardDefaultsPrediction.utils.data_processor import CSVProcessor
-from src.CreditCardDefaultsPrediction.utils.transformer import UpperBoundCalculator, ClipTransformer, PositiveTransformer
+from src.CreditCardDefaultsPrediction.utils.transformer import UpperBoundCalculator, ClipTransformer, PositiveTransformer, OutlierTransformer
 
 from sklearn.pipeline import Pipeline
 from sklearn.compose import ColumnTransformer
@@ -46,10 +46,11 @@ class DataTransformation:
 
             num_pipeline = Pipeline(
                 steps=[
-                    ('upper_bound_calculator', UpperBoundCalculator()),
-                    ('feature_clip', ClipTransformer()),
-                    ('positive_transform', PositiveTransformer()),
-                    ('power_box_cox', PowerTransformer(method='box-cox', standardize=True)),
+                    # ('upper_bound_calculator', UpperBoundCalculator()),
+                    # ('feature_clip', ClipTransformer()),
+                    # ('positive_transform', PositiveTransformer()),
+                    # ('power_box_cox', PowerTransformer(method='box-cox', standardize=True)),
+                    ('outlier', OutlierTransformer()),
                     ('scaler', StandardScaler()),
                     
                 ])

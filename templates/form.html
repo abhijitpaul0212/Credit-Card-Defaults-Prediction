@@ -1,0 +1,214 @@
+<html>
+<body>
+<form action="{{url_for('predict_datapoint')}}" method="POST">
+    <div class="form-group">
+        <label for="limit_balance">Limit Balance:</label>
+        <input type="text" id="limit_balance" name="limit_balance" placeholder="Enter Limit Balance">
+    </div>
+
+    <div class="form-group">
+      <label for="sex">Sex:</label>
+      <select id="sex" name="sex">
+        <option value="1">Male</option>
+        <option value="2">Female</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="education">Education:</label>
+      <select id="education" name="education">
+        <option value="1">Graduate School</option>
+        <option value="2">University</option>
+        <option value="3">High School</option>
+        <option value="4">Others</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="marriage">Marriage:</label>
+      <select id="marriage" name="marriage">
+        <option value="1">Married</option>
+        <option value="2">Single</option>
+        <option value="3">Others</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+        <label for="age">Age:</label>
+        <input type="age" id="age" name="age" placeholder="Enter age">
+    </div>
+
+    <div class="form-group">
+      <label for="pay_sept">Pay September:</label>
+      <select id="pay_sept" name="pay_sept">
+        <option value="-2">No Consumption</option>
+        <option value="-1">Pay Duly</option>
+        <option value="0">Revolving</option>
+        <option value="1">Delayed for 1 month</option>
+        <option value="2">Delayed for 2 months</option>
+        <option value="3">Delayed for 3 months</option>
+        <option value="4">Delayed for 4 months</option>
+        <option value="5">Delayed for 5 months</option>
+        <option value="6">Delayed for 6 months</option>
+        <option value="7">Delayed for 7 months</option>
+        <option value="8">Delayed for 8 months</option>
+        <option value="9">Delayed for 9 months and above</option>
+
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="pay_aug">Pay August:</label>
+      <select id="pay_aug" name="pay_aug">
+        <option value="-2">No Consumption</option>
+        <option value="-1">Pay Duly</option>
+        <option value="0">Revolving</option>
+        <option value="1">Delayed for 1 month</option>
+        <option value="2">Delayed for 2 months</option>
+        <option value="3">Delayed for 3 months</option>
+        <option value="4">Delayed for 4 months</option>
+        <option value="5">Delayed for 5 months</option>
+        <option value="6">Delayed for 6 months</option>
+        <option value="7">Delayed for 7 months</option>
+        <option value="8">Delayed for 8 months</option>
+        <option value="9">Delayed for 9 months and above</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="pay_jul">Pay July:</label>
+      <select id="pay_jul" name="pay_jul">
+        <option value="-2">No Consumption</option>
+        <option value="-1">Pay Duly</option>
+        <option value="0">Revolving</option>
+        <option value="1">Delayed for 1 month</option>
+        <option value="2">Delayed for 2 months</option>
+        <option value="3">Delayed for 3 months</option>
+        <option value="4">Delayed for 4 months</option>
+        <option value="5">Delayed for 5 months</option>
+        <option value="6">Delayed for 6 months</option>
+        <option value="7">Delayed for 7 months</option>
+        <option value="8">Delayed for 8 months</option>
+        <option value="9">Delayed for 9 months and above</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="pay_jun">Pay June:</label>
+      <select id="pay_jun" name="pay_jun">
+        <option value="-2">No Consumption</option>
+        <option value="-1">Pay Duly</option>
+        <option value="0">Revolving</option>
+        <option value="1">Delayed for 1 month</option>
+        <option value="2">Delayed for 2 months</option>
+        <option value="3">Delayed for 3 months</option>
+        <option value="4">Delayed for 4 months</option>
+        <option value="5">Delayed for 5 months</option>
+        <option value="6">Delayed for 6 months</option>
+        <option value="7">Delayed for 7 months</option>
+        <option value="8">Delayed for 8 months</option>
+        <option value="9">Delayed for 9 months and above</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="pay_may">Pay May:</label>
+      <select id="pay_may" name="pay_may">
+        <option value="-2">No Consumption</option>
+        <option value="-1">Pay Duly</option>
+        <option value="0">Revolving</option>
+        <option value="1">Delayed for 1 month</option>
+        <option value="2">Delayed for 2 months</option>
+        <option value="3">Delayed for 3 months</option>
+        <option value="4">Delayed for 4 months</option>
+        <option value="5">Delayed for 5 months</option>
+        <option value="6">Delayed for 6 months</option>
+        <option value="7">Delayed for 7 months</option>
+        <option value="8">Delayed for 8 months</option>
+        <option value="9">Delayed for 9 months and above</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="pay_apr">Pay April:</label>
+      <select id="pay_apr" name="pay_apr">
+        <option value="-2">No Consumption</option>
+        <option value="-1">Pay Duly</option>
+        <option value="0">Revolving</option>
+        <option value="1">Delayed for 1 month</option>
+        <option value="2">Delayed for 2 months</option>
+        <option value="3">Delayed for 3 months</option>
+        <option value="4">Delayed for 4 months</option>
+        <option value="5">Delayed for 5 months</option>
+        <option value="6">Delayed for 6 months</option>
+        <option value="7">Delayed for 7 months</option>
+        <option value="8">Delayed for 8 months</option>
+        <option value="9">Delayed for 9 months and above</option>
+      </select>
+    </div>
+
+    <div class="form-group">  
+        <label for="bill_amount_sept">Bill Amount September:</label>
+        <input type="text" id="bill_amount_sept" name="bill_amount_sept" placeholder="Enter Bill Amount September">
+    </div>
+    
+    <div class="form-group">
+        <label for="bill_amount_aug">Bill Amount August:</label>
+        <input type="text" id="bill_amount_aug" name="bill_amount_aug" placeholder="Enter Bill Amount August">
+    </div>
+  
+    <div class="form-group">
+        <label for="bill_amount_jul">Bill Amount July:</label>
+        <input type="text" id="bill_amount_jul" name="bill_amount_jul" placeholder="Enter Bill Amount July">
+    </div>
+      
+    <div class="form-group">
+      <label for="bill_amount_jun">Bill Amount June:</label>
+      <input type="text" id="bill_amount_jun" name="bill_amount_jun" placeholder="Enter Bill Amount June">
+    </div>
+      
+    <div class="form-group">
+      <label for="bill_amount_may">Bill Amount May:</label>
+      <input type="text" id="bill_amount_may" name="bill_amount_may" placeholder="Enter Bill Amount May">
+    </div>
+      
+    <div class="form-group">
+      <label for="bill_amount_apr">Bill Amount April:</label>
+      <input type="text" id="bill_amount_apr" name="bill_amount_apr" placeholder="Enter Bill Amount April">
+    </div>
+  
+    <div class="form-group">  
+      <label for="pay_amount_sept">Pay Amount September:</label>
+      <input type="text" id="pay_amount_sept" name="pay_amount_sept" placeholder="Enter Pay Amount September">
+  </div>
+  
+  <div class="form-group">
+      <label for="pay_amount_aug">Pay Amount August:</label>
+      <input type="text" id="pay_amount_aug" name="pay_amount_aug" placeholder="Enter Pay Amount August">
+  </div>
+
+  <div class="form-group">
+      <label for="pay_amount_jul">Pay Amount July:</label>
+      <input type="text" id="pay_amount_jul" name="pay_amount_jul" placeholder="Enter Pay Amount July">
+  </div>
+    
+  <div class="form-group">
+    <label for="pay_amount_jun">Pay Amount June:</label>
+    <input type="text" id="pay_amount_jun" name="pay_amount_jun" placeholder="Enter Pay Amount June">
+  </div>
+    
+  <div class="form-group">
+    <label for="pay_amount_may">Pay Amount May:</label>
+    <input type="text" id="pay_amount_may" name="pay_amount_may" placeholder="Enter Pay Amount May">
+  </div>
+    
+  <div class="form-group">
+    <label for="pay_amount_apr">Pay Amount April:</label>
+    <input type="text" id="pay_amount_apr" name="pay_amount_apr" placeholder="Enter Pay Amount April">
+  </div>
+
+<div style="clear:both;"></div>
+  <input type="submit" value="Submit">
+</form>
+</body>
+</html>

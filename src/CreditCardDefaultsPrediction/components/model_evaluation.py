@@ -31,16 +31,14 @@ class ModelEvaluation:
         try:
             X_test, y_test = (test_array.iloc[:, :-1], test_array.iloc[:, -1])
             model_path = os.path.join("artifacts", "model.pkl")
-            print(model_path)
             model = Utils().load_object(model_path)
-            print(model)
 
             """
             If MLFLOW_TRACKING_URI, MLFLOW_TRACKING_USERNAME & MLFLOW_TRACKING_PASSWORD are set correctly, 
             then tracking_url_type = https  --> DagsHub MLFlow
             else tracking_url_type = file --> Local MLFLow
             """
-            mlflow.set_registry_uri("https://dagshub.com/abhijitpaul0212/CreditCardDefaultsPrediction.mlflow")
+            mlflow.set_registry_uri("https://dagshub.com/abhijitpaul0212/Credit-Card-Defaults-Prediction.mlflow")
             tracking_url_type = urlparse(mlflow.get_tracking_uri()).scheme
             print(tracking_url_type)
 
@@ -50,6 +48,11 @@ class ModelEvaluation:
                 (accuracy, f1, precision, recall, roc_auc) = self.eval_metrics(actual=y_test, pred=predicted_qualities)
                 self.eval_metrics(actual=y_test, pred=predicted_qualities)
 
+                logging.info("accuracy_score", accuracy)
+                logging.info("f1_score", f1)
+                logging.info("precision_score", precision)
+                logging.info("recall_score", recall)
+                logging.info("roc_auc_score", roc_auc)
                 mlflow.log_metric("accuracy_score", accuracy)
                 mlflow.log_metric("f1_score", f1)
                 mlflow.log_metric("precision_score", precision)
