@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/abpaul/Documents/Learnings/iNeuron/MLProjects/CreditCardDefaultPrediction/mlruns/0/0c5a947f8d1549deb9b61f61eb6d6eaa/artifacts
+end_time: 1701687468918
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 0c5a947f8d1549deb9b61f61eb6d6eaa
+run_name: calm-croc-100
+run_uuid: 0c5a947f8d1549deb9b61f61eb6d6eaa
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1701687463228
+status: 4
+tags: []
+user_id: abpaul

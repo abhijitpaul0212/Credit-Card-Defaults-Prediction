@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/abpaul/Documents/Learnings/iNeuron/MLProjects/CreditCardDefaultPrediction/mlruns/0/b031ee8f81f7405bb72a305c2307173c/artifacts
+end_time: 1701687591910
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: b031ee8f81f7405bb72a305c2307173c
+run_name: popular-trout-148
+run_uuid: b031ee8f81f7405bb72a305c2307173c
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1701687583421
+status: 3
+tags: []
+user_id: abpaul
