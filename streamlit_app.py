@@ -31,20 +31,20 @@ def user_input_features(data):
     # Dropdown to select text option for SEX
     sex_dict = {'Male': 1, 
                 'Female': 2}
-    sex = st.selectbox('SEX:', list(sex_dict.keys()))
+    sex = st.sidebar.selectbox('SEX:', list(sex_dict.keys()))
 
     # Dropdown to select text option for EDUCATION
     education_dict = {'Graduate School': 1, 
                       'University': 2, 
                       'High School': 3, 
                       'Others': 4}
-    education = st.selectbox('EDUCATION:', list(education_dict.keys()))
+    education = st.sidebar.selectbox('EDUCATION:', list(education_dict.keys()))
 
     # Dropdown to select text option for MARRIAGE
     marriage_dict = {'Married': 1, 
                      'Single': 2,
                      'Others': 3}
-    marriage = st.selectbox('MARRIAGE:', list(marriage_dict.keys()))
+    marriage = st.sidebar.selectbox('MARRIAGE:', list(marriage_dict.keys()))
 
     age = st.sidebar.slider('AGE', int(data['AGE'].min()), int(data['AGE'].max()), int(data['AGE'].mean()))
 
@@ -61,7 +61,7 @@ def user_input_features(data):
                      'Delayed for 7 months': 7, 
                      'Delayed for 8 months': 8, 
                      'Delayed for 9 months and above': 9}
-    pay_sept = st.selectbox('PAY SEPTEMBER:', list(pay_sept_dict.keys()))
+    pay_sept = st.sidebar.selectbox('PAY SEPTEMBER:', list(pay_sept_dict.keys()))
 
     # Dropdown to select text option for PAY AUG
     pay_aug_dict = {'No Consumption': -2, 
@@ -76,7 +76,7 @@ def user_input_features(data):
                     'Delayed for 7 months': 7, 
                     'Delayed for 8 months': 8, 
                     'Delayed for 9 months and above': 9}
-    pay_aug = st.selectbox('PAY AUGUST:', list(pay_aug_dict.keys()))
+    pay_aug = st.sidebar.selectbox('PAY AUGUST:', list(pay_aug_dict.keys()))
 
     # Dropdown to select text option for PAY JUL
     pay_jul_dict = {'No Consumption': -2,
@@ -91,7 +91,7 @@ def user_input_features(data):
                     'Delayed for 7 months': 7, 
                     'Delayed for 8 months': 8, 
                     'Delayed for 9 months and above': 9}
-    pay_jul = st.selectbox('PAY JULY:', list(pay_jul_dict.keys()))
+    pay_jul = st.sidebar.selectbox('PAY JULY:', list(pay_jul_dict.keys()))
 
     # Dropdown to select text option for PAY JUN
     pay_jun_dict = {'No Consumption': -2, 
@@ -106,7 +106,7 @@ def user_input_features(data):
                     'Delayed for 7 months': 7, 
                     'Delayed for 8 months': 8, 
                     'Delayed for 9 months and above': 9}
-    pay_jun = st.selectbox('PAY JUNE:', list(pay_jun_dict.keys()))
+    pay_jun = st.sidebar.selectbox('PAY JUNE:', list(pay_jun_dict.keys()))
 
     # Dropdown to select text option for PAY MAY
     pay_may_dict = {'No Consumption': -2, 
@@ -121,7 +121,7 @@ def user_input_features(data):
                     'Delayed for 7 months': 7, 
                     'Delayed for 8 months': 8, 
                     'Delayed for 9 months and above': 9}
-    pay_may = st.selectbox('PAY MAY:', list(pay_may_dict.keys()))
+    pay_may = st.sidebar.selectbox('PAY MAY:', list(pay_may_dict.keys()))
 
     # Dropdown to select text option for PAY APR
     pay_apr_dict = {'No Consumption': -2, 
@@ -136,7 +136,7 @@ def user_input_features(data):
                     'Delayed for 7 months': 7, 
                     'Delayed for 8 months': 8, 
                     'Delayed for 9 months and above': 9}
-    pay_apr = st.selectbox('PAY APRIL:', list(pay_apr_dict.keys()))
+    pay_apr = st.sidebar.selectbox('PAY APRIL:', list(pay_apr_dict.keys()))
 
     # TextField to enter Bill AMOUNTS
     bill_amount_sept = st.number_input("BILL AMOUNT SEPTEMBER:")
