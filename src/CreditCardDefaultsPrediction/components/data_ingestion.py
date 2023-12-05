@@ -6,7 +6,7 @@ from dataclasses import dataclass
 
 from src.CreditCardDefaultsPrediction.logger import logging
 from src.CreditCardDefaultsPrediction.exception import CustomException
-from src.CreditCardDefaultsPrediction.utils.data_processor import CSVProcessor
+from src.CreditCardDefaultsPrediction.utils.data_processor import CSVProcessor, DBProcessor
 from src.CreditCardDefaultsPrediction.utils.utils import Utils
 
 from sklearn.model_selection import train_test_split
@@ -31,13 +31,18 @@ class DataIngestion:
     def __init__(self):
         self.ingestion_config = DataIngestionConfig()
         self.utils = Utils()
-        self.csv_processor = CSVProcessor()
+        # self.csv_processor = CSVProcessor()
+        self.db_processor = DBProcessor()
 
     def initiate_data_ingestion(self):
         logging.info("Data Ingestion started")
 
         try:
-            data = self.utils.run_data_pipeline(self.csv_processor, "notebooks/data/raw_data", "UCI_Credit_Card_Defaults.csv", skiprows=1, skipinitialspace=True)
+            # Read raw dataset directly from csv file
+            # data = self.utils.run_data_pipeline(self.csv_processor, "notebooks/data/raw_data", "UCI_Credit_Card_Defaults.csv", skiprows=1, skipinitialspace=True)
+
+            # Read raw dataset from MongoDB database
+            data = self.utils.run_data_pipeline(self.db_processor, "mongodb+srv://root:root@cluster0.k3s4vuf.mongodb.net/?retryWrites=true&w=majority&ssl=true", "credit_card_defaults/data")
 
             os.makedirs(os.path.dirname(os.path.join(self.ingestion_config.raw_data_path)), exist_ok=True)
 

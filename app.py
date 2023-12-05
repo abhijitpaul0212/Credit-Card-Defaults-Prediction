@@ -52,7 +52,7 @@ def predict_datapoint():
         pred = predict_pipeline.predict(final_data)
         result = "DEFAULT" if pred[0] == 1 else "NOT DEFAULT"
 
-        return render_template("result.html", final_result=result, model_score=round(ModelTrainer().show_model_score()*100, 2))
+        return render_template("result.html", final_result=result)
     
 
 if __name__ == "__main__":

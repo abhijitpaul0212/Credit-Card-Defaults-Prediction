@@ -79,7 +79,7 @@ def user_input_features(data):
     pay_aug = st.selectbox('PAY AUGUST:', list(pay_aug_dict.keys()))
 
     # Dropdown to select text option for PAY JUL
-    pay_jul_dict = {'No Consumption': -2, 
+    pay_jul_dict = {'No Consumption': -2,
                     'Pay Duly': -1, 
                     'Revolving': 0,  
                     'Delayed for 1 month': 1, 
@@ -198,6 +198,4 @@ prediction = predict_pipeline.predict(df)
 st.header('Customer will')
 st.write("DEFAULT" if prediction[0] == 1 else "NOT DEFAULT")
 
-st.header('Model Score')
-st.write(round(ModelTrainer().show_model_score()*100, 2))
 st.write('---')

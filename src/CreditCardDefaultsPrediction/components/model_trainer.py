@@ -122,9 +122,9 @@ class ModelTrainer:
             # logging.info(f'Model Report : {model_report}')
 
             # To get best model score from dictionary 
-            best_model_score = model_report.get('Accuracy Score')
+            best_model_score = model_report.get('Recall Score')
             best_model_name = str(model_report.get('Model')).split("()")[0]
-            logging.info(f'Best Model Found , Model Name : {best_model_name} , Accuracy Score: {best_model_score}')
+            logging.info(f'Best Model Found , Model Name : {best_model_name} , Recall Score: {best_model_score}')
             return best_model_score
         
         except Exception as e:

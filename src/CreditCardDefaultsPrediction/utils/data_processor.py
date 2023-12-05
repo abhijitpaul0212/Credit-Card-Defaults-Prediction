@@ -3,6 +3,7 @@ import pandas as pd
 import os
 from pathlib import Path
 from src.CreditCardDefaultsPrediction.logger import logging
+from src.CreditCardDefaultsPrediction.utils.utils import Utils
 
 
 class DataProcessor:
@@ -21,3 +22,9 @@ class JSONProcessor(DataProcessor):
     def process_data(self, path: str, filename: str, **kwargs):
         logging.info("JSON dataset loaded sucessfully")
         return pd.read_json(Path(os.path.join(path, filename)))
+
+
+class DBProcessor(DataProcessor):
+    def process_data(self, uri: str, collection: str, **kwargs):
+        logging.info("Dataset from Database loaded sucessfully")
+        return Utils().get_data_from_database(uri, collection)

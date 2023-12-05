@@ -8,4 +8,5 @@ statsmodels
 imblearn
 mlflow
 flask
+pymongo[srv]
 -e .

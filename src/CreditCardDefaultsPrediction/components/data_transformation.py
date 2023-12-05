@@ -57,7 +57,7 @@ class DataTransformation:
 
             cat_pipeline = Pipeline(
                 steps=[
-                    ('imputer', SimpleImputer(strategy='most_frequent')),
+                    # ('imputer', SimpleImputer(strategy='most_frequent')),
                     ('scaler', StandardScaler())
                 ]
             )
@@ -89,8 +89,12 @@ class DataTransformation:
             drop_columns = [target_column_name, 'ID']
 
             # Handle imbalance data
+
+            train_df = train_df.drop(columns=['_id'], axis=1)
             train_df = self.utils.smote_balance(train_df)
+            val_df = val_df.drop(columns=['_id'], axis=1)
             val_df = self.utils.smote_balance(val_df)
+            test_df = test_df.drop(columns=['_id'], axis=1)
             test_df = self.utils.smote_balance(test_df)
 
             input_feature_train_df = train_df.drop(columns=drop_columns, axis=1)

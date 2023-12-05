@@ -145,6 +145,31 @@ class Utils:
         logging.info('Dataset shape after resampling: {}'.format(data.shape[0]))
         return data
 
+    def connect_database(self, uri):
+        # making connection with mongo db
+        from pymongo.mongo_client import MongoClient
+        # uri = "mongodb+srv://root:root@cluster0.k3s4vuf.mongodb.net/?retryWrites=true&w=majority&ssl=true"
+
+        # Create a new client and connect to the server
+        client = MongoClient(uri)
+
+        # Send a ping to confirm a successful connection
+        try:
+            client.admin.command('ping')
+            print("Pinged your deployment. You successfully connected to MongoDB!")
+            return client
+        except Exception as e:
+            logging.error("Exception occured during creating database connection")
+            raise CustomException(e, sys)
+
+    def get_data_from_database(self, uri, collection):
+        # collection = "credit_card_defaults/data"
+        collection = collection.split("/")
+        client = self.connect_database(uri)
+        collection = client[collection[0]][collection[1]]
+        data = list(collection.find())
+        return pd.DataFrame(data)
+
 
 if __name__ == "__main__":
     logging.info("Demo logging activity")

@@ -22,3 +22,28 @@ or Kaggle website at https://www.kaggle.com/code/selener/prediction-of-credit-ca
 5. Feature Scaling: We scaled the features to bring down all of the values to a similar range. 
 6. Model Training and Implementation: We pass the features to 8 different classification models. We also did hyperparameter tuning using GridSearchCV.
 7. Performance Evaluation: After passing it to various classification models and calculating the metrics, we choose a final model that can make better predictions. We evaluated different performance metrics and chose our final model using the f1 score and recall score.
+
+## Artifacts
+
+#### Dataset Source
+MongoDB
+
+#### Preprocessings steps
+1. Handling Outliers
+2. Scaling data
+3. Handling imbalance dataset
+
+
+#### Algorithms used to find best model
+1. LogisticRegression
+2. SVC
+3. RandomForestClassifier
+4. GradientBoostingClassifier
+5. KNeighborsClassifier
+6. DecisionTreeClassifier
+
+#### End Result
+* Best Model with params: SVC(C=0.01, degree=5, kernel='poly')
+* Training Dataset - Recall Score: : 0.9293388415965623
+* Validation Dataset - Recall Score: 0.9144074360960496
+* Test Dataset - Recall Score: 0.9322429906542056
