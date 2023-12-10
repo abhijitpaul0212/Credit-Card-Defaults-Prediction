@@ -84,7 +84,6 @@ class CustomData:
         self.pay_amount_jun = pay_amount_jun
         self.pay_amount_may = pay_amount_may
         self.pay_amount_apr = pay_amount_apr
-
                 
     def get_data_as_dataframe(self):
         try:
@@ -94,24 +93,24 @@ class CustomData:
                 'EDUCATION': [self.education],
                 'MARRIAGE': [self.marriage],
                 'AGE': [self.age],
-                'PAY_0': [self.pay_sept],
-                'PAY_2': [self.pay_aug],
-                'PAY_3': [self.pay_jul],
-                'PAY_4': [self.pay_jun],
-                'PAY_5': [self.pay_may],
-                'PAY_6': [self.pay_apr],
-                'BILL_AMT1': [self.bill_amount_sept],
-                'BILL_AMT2': [self.bill_amount_aug],
-                'BILL_AMT3': [self.bill_amount_jul],
-                'BILL_AMT4': [self.bill_amount_jun],
-                'BILL_AMT5': [self.bill_amount_may],
-                'BILL_AMT6': [self.bill_amount_apr],
-                'PAY_AMT1': [self.pay_amount_sept],
-                'PAY_AMT2': [self.pay_amount_aug],
-                'PAY_AMT3': [self.pay_amount_jul],
-                'PAY_AMT4': [self.pay_amount_jun],
-                'PAY_AMT5': [self.pay_amount_may],
-                'PAY_AMT6': [self.pay_amount_apr],
+                'PAY_SEPT': [self.pay_sept],
+                'PAY_AUG': [self.pay_aug],
+                'PAY_JUL': [self.pay_jul],
+                'PAY_JUN': [self.pay_jun],
+                'PAY_MAY': [self.pay_may],
+                'PAY_APR': [self.pay_apr],
+                'BILL_AMT_SEPT': [self.bill_amount_sept],
+                'BILL_AMT_AUG': [self.bill_amount_aug],
+                'BILL_AMT_JUL': [self.bill_amount_jul],
+                'BILL_AMT_JUN': [self.bill_amount_jun],
+                'BILL_AMT_MAY': [self.bill_amount_may],
+                'BILL_AMT_APR': [self.bill_amount_apr],
+                'PAY_AMT_SEPT': [self.pay_amount_sept],
+                'PAY_AMT_AUG': [self.pay_amount_aug],
+                'PAY_AMT_JUL': [self.pay_amount_jul],
+                'PAY_AMT_JUN': [self.pay_amount_jun],
+                'PAY_AMT_MAY': [self.pay_amount_may],
+                'PAY_AMT_APR': [self.pay_amount_apr],
             }
             df = pd.DataFrame(custom_data_input_dict)
             logging.info('Custom input is converted to Dataframe: \n{}'.format(df.head()))
