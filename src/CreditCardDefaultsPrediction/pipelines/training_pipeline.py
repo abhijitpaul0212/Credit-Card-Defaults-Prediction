@@ -12,13 +12,13 @@ class TrainingPipeline:
     
     def start(self):
         data_ingestion = DataIngestion()
-        train_data_path, val_data_path, test_data_path = data_ingestion.initiate_data_ingestion()
+        train_data_path, test_data_path = data_ingestion.initiate_data_ingestion()
 
         data_transformation = DataTransformation()
-        train_arr, val_arr, test_arr = data_transformation.initiate_data_transformation(train_path=train_data_path, val_path=val_data_path, test_path=test_data_path)
+        train_arr, test_arr = data_transformation.initiate_data_transformation(train_data_path, test_data_path)
 
         model_trainer = ModelTrainer()
-        model_trainer.initiate_model_training(train_arr, val_arr)
+        model_trainer.initiate_model_training(train_arr, test_arr)
 
         model_evaluation = ModelEvaluation()
         model_evaluation.initiate_model_evaluation(test_arr)
