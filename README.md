@@ -47,3 +47,7 @@ MongoDB
 * Training Dataset - Recall Score: : 0.9293388415965623
 * Validation Dataset - Recall Score: 0.9144074360960496
 * Test Dataset - Recall Score: 0.9322429906542056
+
+## LIVE
+* https://credit-card-defaults-prediction.streamlit.app/
+
