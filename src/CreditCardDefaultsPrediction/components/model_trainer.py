@@ -32,82 +32,123 @@ class ModelTrainer:
         self.model_trainer_config = ModelTrainerConfig()
         self.utils = Utils()
 
-    def initiate_model_training(self, train_dataframe, val_dataframe):
+    def initiate_model_training(self, train_dataframe, test_dataframe):
         try:
             logging.info("Splitting Dependent and Independent features from train and validation & test dataset")
 
-            X_train, y_train, X_val, y_val = (
+            X_train, y_train, X_test, y_test = (
                 train_dataframe.iloc[:, :-1],
                 train_dataframe.iloc[:, -1],
-                val_dataframe.iloc[:, :-1],
-                val_dataframe.iloc[:, -1])
+                test_dataframe.iloc[:, :-1],
+                test_dataframe.iloc[:, -1])
 
-            models = (
+            # hyper_parameter_models = (
+            #     {
+            #         GaussianNB(): {
+            #             'var_smoothing': np.logspace(0,-9, num=100)
+            #             }},
+            #     {
+            #         LogisticRegression(): {
+            #             'penalty': ['l2'],
+            #             'C': [0.01, 0.1, 1, 10, 100]
+            #             }},
+            #     {
+            #         SVC(): {
+            #             'kernel': ['poly', 'rbf', 'sigmoid'],
+            #             'C': [0.01, 0.1, 1, 10, 100],
+            #             'degree': [2, 3, 4, 5]
+            #             }},
+            #     {   
+            #         AdaBoostClassifier(): { 
+            #             'n_estimators': [100, 500, 1000, 5000]
+            #             }},
+            #     {
+            #         RandomForestClassifier(): { 
+            #             'n_estimators': [50, 100, 150, 200],
+            #             'criterion': ["gini", "entropy", "log_loss"],
+            #             "max_features": ["auto", "sqrt", "log2"],
+            #             "min_samples_leaf": [5, 10, 20, 50, 100],
+            #             "max_depth": range(2, 20, 3)   
+            #             }},
+            #     {
+            #         GradientBoostingClassifier(): { 
+            #             'n_estimators': [100, 500, 1000, 5000],
+            #             'max_depth': range(5,16,2), 
+            #             'min_samples_split': range(200,2100,200),
+            #             'min_samples_leaf': range(30,71,10),
+            #             'max_features': range(7,20,2),
+            #             'subsample': [0.6,0.7,0.75,0.8,0.85,0.9]
+            #             }},
+            #     {
+            #         KNeighborsClassifier(): { 
+            #             'n_neighbors': [2, 5, 7, 9, 11, 13, 15, 30, 60],
+            #             'weights': ['uniform', 'distance'],
+            #             'metric': ['minkowski', 'euclidean', 'manhattan'],
+            #             "algorithm": ["auto", "ball_tree", "kd_tree", "brute"]
+            #             }},
+            #     {
+            #         DecisionTreeClassifier(): {
+            #             'criterion': ["gini", "entropy", "log_loss"],
+            #             "max_features": ["auto", "sqrt", "log2"],
+            #             "min_samples_leaf": [5, 10, 20, 50, 100],
+            #             "max_depth": [2, 3, 5, 10, 20]    
+            #             }}
+            #     )
+            
+            models = {
+                    'DecisionTree': DecisionTreeClassifier(),
+                    'SVM': SVC(),
+                    'LogisticRegression': LogisticRegression(),
+                    'RandomForest': RandomForestClassifier(),
+                    'NearestNeighbors': KNeighborsClassifier(),
+                    'GradientBoosting': GradientBoostingClassifier(),
+                    'AdaBoost': AdaBoostClassifier(),
+                    'NaiveBayes': GaussianNB()
+                }
+            
+            hyper_parameter_models = (
+                {
+                    GaussianNB(): {'var_smoothing': np.logspace(0,-9, num=100)}},
+                {
+                    LogisticRegression(max_iter=1000): {'penalty':['l1','l2'], 'C' : [0.001, 0.01, 0.1, 1, 10, 100, 1000] }},
+                {
+                    SVC(): {'C': [0.1, 1, 10, 100, 500], 'kernel': ['rbf', 'poly']} },
+                {   
+                    AdaBoostClassifier(): {'n_estimators': [100, 500, 1000, 5000]}},
+                {
+                    RandomForestClassifier(): {'n_estimators': [100,150,200, 500], 'max_depth': [10,20,30, 50]}},
                 # {
-                    # GaussianNB(): {
-                    #     'var_smoothing': np.logspace(0,-9, num=100)
-                    #     }},
-                {
-                    LogisticRegression(): {
-                        'penalty': ['l2'],
-                        'C': [0.01, 0.1, 1, 10, 100]
-                        }},
-                {
-                    SVC(): {
-                        'kernel': ['poly', 'rbf', 'sigmoid'],
-                        'C': [0.01, 0.1, 1, 10, 100],
-                        'degree': [2, 3, 4, 5]
-                        }},
-                # {   
-                #     AdaBoostClassifier(): { 
-                #         'n_estimators': [100, 500, 1000, 5000]
+                #     GradientBoostingClassifier(): { 
+                #         'n_estimators': [100, 500, 1000, 5000],
+                #         'max_depth': range(5,16,2), 
+                #         'min_samples_split': range(200,2100,200),
+                #         'min_samples_leaf': range(30,71,10),
+                #         'max_features': range(7,20,2),
+                #         'subsample': [0.6,0.7,0.75,0.8,0.85,0.9]
+                #         }},
+                # {
+                #     KNeighborsClassifier(): { 
+                #         'n_neighbors': [2, 5, 7, 9, 11, 13, 15, 30, 60],
+                #         'weights': ['uniform', 'distance'],
+                #         'metric': ['minkowski', 'euclidean', 'manhattan'],
+                #         "algorithm": ["auto", "ball_tree", "kd_tree", "brute"]
                 #         }},
                 {
-                    RandomForestClassifier(): { 
-                        'n_estimators': [50, 100, 150, 200],
-                        'criterion': ["gini", "entropy", "log_loss"],
-                        "max_features": ["auto", "sqrt", "log2"],
-                        "min_samples_leaf": [5, 10, 20, 50, 100],
-                        "max_depth": range(2, 20, 3)   
-                        }},
-                {
-                    GradientBoostingClassifier(): { 
-                        'n_estimators': [100, 500, 1000, 5000],
-                        'max_depth': range(5,16,2), 
-                        'min_samples_split': range(200,2100,200),
-                        'min_samples_leaf': range(30,71,10),
-                        'max_features': range(7,20,2),
-                        'subsample': [0.6,0.7,0.75,0.8,0.85,0.9]
-                        }},
-                {
-                    KNeighborsClassifier(): { 
-                        'n_neighbors': [2, 5, 7, 9, 11, 13, 15, 30, 60],
-                        'weights': ['uniform', 'distance'],
-                        'metric': ['minkowski', 'euclidean', 'manhattan'],
-                        "algorithm": ["auto", "ball_tree", "kd_tree", "brute"]
-                        }},
-                {
-                    DecisionTreeClassifier(): {
-                        'criterion': ["gini", "entropy", "log_loss"],
-                        "max_features": ["auto", "sqrt", "log2"],
-                        "min_samples_leaf": [5, 10, 20, 50, 100],
-                        "max_depth": [2, 3, 5, 10, 20]    
-                        }}
+                    DecisionTreeClassifier(): {'max_depth': [20,30,50,100], 'min_samples_split':[0.1,0.2,0.4]}}
                 )
             
-            best_model, model_report = self.utils.evaluate_models(models, X_train, y_train, X_val, y_val)
-
-            logging.info("Best Model Report on Validation Dataset: {}".format(model_report))
+            best_model, model_report = self.utils.evaluate_models_with_hyperparameter(hyper_parameter_models, X_train, y_train, X_test, y_test, metric="accuracy")
+            # best_model, model_report = self.utils.evaluate_models(models, X_train, y_train, X_test, y_test, metric="accuracy")
             
             self.utils.save_object(
                  file_path=self.model_trainer_config.trained_model_obj_path,
                  obj=best_model
             )
 
-            self.utils.save_object(
-                 file_path=self.model_trainer_config.trained_model_report_path,
-                 obj=model_report
-            )
+            # self.utils.save_object(
+            #      file_path=self.model_trainer_config.trained_model_report_path,
+            #      obj=model_report
+            # )
           
 
             # model_report_test = self.utils.predict(best_model, X_test, y_test)
