@@ -4,11 +4,64 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HomePage</title>
+    <title>Credit Card Defaulter Prediction</title>
+    <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+    <style>
+      body {
+        background-color: #f4f4f4;
+        font-family: 'Arimo', sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+  
+      header {
+        background-color: #3498db;
+        color: #fff;
+        text-align: center;
+        padding: 1em 0;
+        font-family: 'Courier New', Courier, monospace;
+      }
+  
+      .result {
+        margin: auto;
+        width: 60%;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        padding: 2em;
+        margin-top: 2em;
+        border-radius: 8px;
+        text-align: center;
+      }
+  
+      .result h1 {
+        color: #3498db;
+        font-size: 24px;
+      }
+  
+      .proceed {
+        margin: auto;
+        text-align: center;
+        height: 40%;
+        width: 60%;
+      }
+  
+    </style>
+  </head>    
 </head>
 <body>
-    <h1>Welcome to Credit Card Defaults Prediction Portal</h1>
-    <a href="{{url_for('predict_datapoint')}}">
-        <button>Proceed!</button>
-    </a>
+    <header>
+        <h1>Credit Card Defaulter Prediction</h1>
+    </header>
+    <br/>
+    <br/>
+    <br/>
+    <div class="proceed">
+        <a href="{{url_for('predict_datapoint')}}">
+            <button>Proceed</button>
+        </a>
+    </div>
 </body>
 </html>
