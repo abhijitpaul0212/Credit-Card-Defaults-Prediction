@@ -14,7 +14,7 @@ data = Utils().run_data_pipeline(CSVProcessor(), "notebooks/data/raw_data", "UCI
 data.drop(['default payment next month'], axis=1, inplace=True)
 
 st.write("""
-# Credit Card Defaults Prediction App
+# Credit Card Defaults Prediction
 
 This app predicts the **Credit Card Defaults**!
 """)
@@ -159,25 +159,25 @@ def user_input_features(data):
                 'SEX': sex_dict[sex] if sex in sex_dict else 0,
                 'EDUCATION': education_dict[education] if education in education_dict else 0,
                 'MARRIAGE': marriage_dict[marriage] if marriage in marriage_dict else 0,
-                'AGE': int(age),
-                'PAY_0': pay_sept_dict[pay_sept] if pay_sept in pay_sept_dict else 0,
-                'PAY_2': pay_aug_dict[pay_aug] if pay_aug in pay_aug_dict else 0,
-                'PAY_3': pay_jul_dict[pay_jul] if pay_jul in pay_jul_dict else 0,
-                'PAY_4': pay_jun_dict[pay_jun] if pay_jun in pay_jun_dict else 0,
-                'PAY_5': pay_may_dict[pay_may] if pay_may in pay_may_dict else 0,
-                'PAY_6': pay_apr_dict[pay_apr] if pay_apr in pay_apr_dict else 0,
-                'BILL_AMT1': float(bill_amount_sept),
-                'BILL_AMT2': float(bill_amount_aug),
-                'BILL_AMT3': float(bill_amount_jul),
-                'BILL_AMT4': float(bill_amount_jun),
-                'BILL_AMT5': float(bill_amount_may),
-                'BILL_AMT6': float(bill_amount_apr),
-                'PAY_AMT1': float(pay_amount_sept),
-                'PAY_AMT2': float(pay_amount_aug),
-                'PAY_AMT3': float(pay_amount_jul),
-                'PAY_AMT4': float(pay_amount_jun),
-                'PAY_AMT5': float(pay_amount_may),
-                'PAY_AMT6': float(pay_amount_apr)
+                'AGE': int(age), 
+                'PAY_SEPT': pay_sept_dict[pay_sept] if pay_sept in pay_sept_dict else 0,
+                'PAY_AUG': pay_aug_dict[pay_aug] if pay_aug in pay_aug_dict else 0,
+                'PAY_JUL': pay_jul_dict[pay_jul] if pay_jul in pay_jul_dict else 0,
+                'PAY_JUN': pay_jun_dict[pay_jun] if pay_jun in pay_jun_dict else 0,
+                'PAY_MAY': pay_may_dict[pay_may] if pay_may in pay_may_dict else 0,
+                'PAY_APR': pay_apr_dict[pay_apr] if pay_apr in pay_apr_dict else 0,
+                'BILL_AMT_SEPT': float(bill_amount_sept),
+                'BILL_AMT_AUG': float(bill_amount_aug),
+                'BILL_AMT_JUL': float(bill_amount_jul),
+                'BILL_AMT_JUN': float(bill_amount_jun),
+                'BILL_AMT_MAY': float(bill_amount_may),
+                'BILL_AMT_APR': float(bill_amount_apr),
+                'PAY_AMT_SEPT': float(pay_amount_sept),
+                'PAY_AMT_AUG': float(pay_amount_aug),
+                'PAY_AMT_JUL': float(pay_amount_jul),
+                'PAY_AMT_JUN': float(pay_amount_jun),
+                'PAY_AMT_MAY': float(pay_amount_may),
+                'PAY_AMT_APR': float(pay_amount_apr)
             }
     features = pd.DataFrame(data, index=[0])
     return features
