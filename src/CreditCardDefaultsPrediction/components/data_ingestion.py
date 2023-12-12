@@ -6,7 +6,7 @@ from dataclasses import dataclass
 
 from src.CreditCardDefaultsPrediction.logger import logging
 from src.CreditCardDefaultsPrediction.exception import CustomException
-from src.CreditCardDefaultsPrediction.utils.data_processor import CSVProcessor, DBProcessor
+from src.CreditCardDefaultsPrediction.utils.data_processor import DBProcessor, CSVProcessor
 from src.CreditCardDefaultsPrediction.utils.utils import Utils
 
 from sklearn.model_selection import train_test_split
@@ -49,7 +49,7 @@ class DataIngestion:
             data.to_csv(self.ingestion_config.raw_data_path, index=False)
             logging.info("Raw dataset is saved in artifacts folder")
 
-            train_data, test_data = train_test_split(data, test_size=0.25, random_state=42)
+            train_data, test_data = train_test_split(data, test_size=0.33, random_state=42)
             # val_data, test_data = train_test_split(test_data, test_size=0.50, random_state=42)
             logging.info("Dataset is splitted into Train, Validation & Test data")
 
@@ -67,12 +67,3 @@ class DataIngestion:
         except Exception as e:
             logging.error("Exception occuring during data ingestion")
             raise CustomException(e, sys)
-
-
-if __name__ == '__main__':
-    data_ingestion = DataIngestion()
-    # train_data_path, val_data_path, test_data_path = data_ingestion.initiate_data_ingestion()
-    train_data_path, test_data_path = data_ingestion.initiate_data_ingestion()
-
-    print(train_data_path)
-    print(test_data_path)
