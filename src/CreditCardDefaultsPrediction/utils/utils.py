@@ -152,7 +152,7 @@ class Utils:
         logging.info("BEST MODEL: {}".format(model_name))
         logging.info("TESTING SCORES: {}".format(self.MODEL_REPORT[model_name]))
 
-        return best_model, self.MODEL_REPORT
+        return best_model
     
     def evaluate_models(self, models: dict, train_features, train_label, test_features, test_label, metric='accuracy'):
         """
@@ -166,12 +166,6 @@ class Utils:
         :param val_label: Validation labels to the predict function
         :return: tuple: The best model and a dictionary of the model report
         """     
-        # def find_model_by_score(dictionary, target_value):
-        #     for key, value in dictionary.items():
-        #         if value == target_value:
-        #             return key
-        #     return None
-
         np.random.seed(42)        
         self.MODEL_REPORT = {}
         for model_name, model in models.items():            
@@ -188,8 +182,9 @@ class Utils:
         best_model_score = max(sorted(model[metric] for model in self.MODEL_REPORT.values()))
         best_model_name = list(self.MODEL_REPORT.keys())[list(model[metric] for model in self.MODEL_REPORT.values()).index(best_model_score)]
         best_model = self.MODEL_REPORT[best_model_name]['model']
-        model_report = self.MODEL_REPORT[best_model_name]       
-        return best_model, model_report
+        model_report = self.MODEL_REPORT[best_model_name]
+        print("BEST MODEL REPORT: ", model_report)   
+        return best_model
 
     def smote_balance(self, data):
         """
@@ -240,12 +235,3 @@ class Utils:
         collection = client[collection[0]][collection[1]]
         data = list(collection.find())
         return pd.DataFrame(data)
-
-
-if __name__ == "__main__":
-    logging.info("Demo logging activity")
-
-    utils = Utils()
-    utils.save_object(os.path.join('logs', 'utils.pkl'), utils)
-    utils.load_object(os.path.join('logs', 'utils.pkl'))
-    utils.delete_object(os.path.join('logs', 'utils.pkl'))
