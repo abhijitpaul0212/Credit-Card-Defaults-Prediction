@@ -1,18 +1,19 @@
-# app.py
+# streamlit_app.py
+
 import streamlit as st
 import pandas as pd
-import os
 
-from src.CreditCardDefaultsPrediction.pipelines.prediction_pipeline import PredictPipeline, CustomData
+from src.CreditCardDefaultsPrediction.pipelines.prediction_pipeline import PredictPipeline
 from src.CreditCardDefaultsPrediction.utils.utils import Utils
-from src.CreditCardDefaultsPrediction.utils.data_processor import CSVProcessor
-from src.CreditCardDefaultsPrediction.components.model_trainer import ModelTrainer
+from src.CreditCardDefaultsPrediction.utils.data_processor import DBProcessor
 
+# Ingest data from MongoDB
+data = Utils().run_data_pipeline(DBProcessor(), "mongodb+srv://root:root@cluster0.k3s4vuf.mongodb.net/?retryWrites=true&w=majority&ssl=true", "credit_card_defaults/data")
 
-data = Utils().run_data_pipeline(CSVProcessor(), "notebooks/data/raw_data", "UCI_Credit_Card_Defaults.csv", skiprows=1, skipinitialspace=True)
+# Drop dolumns
+data.drop(['DEFAULT_PAYMENT', "_id", "ID"], axis=1, inplace=True)
 
-data.drop(['default payment next month'], axis=1, inplace=True)
-
+# Design Streamlit Page
 st.write("""
 # Credit Card Defaults Prediction
 
@@ -186,7 +187,6 @@ def user_input_features(data):
 df = user_input_features(data)
 
 # Main Panel
-
 # Print specified input parameters
 st.header('Specified Input parameters')
 st.write(df)
