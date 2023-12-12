@@ -46,10 +46,6 @@ class DataTransformation:
 
             num_pipeline = Pipeline(
                 steps=[
-                    # ('upper_bound_calculator', UpperBoundCalculator()),
-                    # ('feature_clip', ClipTransformer()),
-                    # ('positive_transform', PositiveTransformer()),
-                    # ('power_box_cox', PowerTransformer(method='box-cox', standardize=True)),
                     # ('outlier', OutlierTransformer()),
                     ('scaler', StandardScaler()),
                     
@@ -57,7 +53,7 @@ class DataTransformation:
 
             cat_pipeline = Pipeline(
                 steps=[
-                    ('onehotencoder', OneHotEncoder(sparse_output=False,handle_unknown='ignore', categories='auto',drop='first')),
+                    # ('onehotencoder', OneHotEncoder(sparse_output=False, handle_unknown='ignore', categories='auto', drop='first')),
                     ('scaler', StandardScaler())
                 ]
             )
@@ -82,7 +78,7 @@ class DataTransformation:
             logging.info("Numerical categories has been converted to string values")
             return df
         
-        def modify_columns(df):
+        def update_column_values(df):
             # Modify 'EDUCATION' column
             fil_education = (df['EDUCATION'] == 5) | (df['EDUCATION'] == 6) | (df['EDUCATION'] == 0)
             df.loc[fil_education, 'EDUCATION'] = 4
@@ -109,8 +105,8 @@ class DataTransformation:
             test_df = self.utils.smote_balance(test_df)
             
             # Modify column data
-            # train_df = modify_columns(train_df)
-            # test_df = modify_columns(test_df)
+            train_df = update_column_values(train_df)
+            test_df = update_column_values(test_df)
 
             # Replace categories
             # train_df = replace_categories(train_df)
@@ -157,8 +153,3 @@ class DataTransformation:
         except Exception as e:
             logging.error("Exception occured in Initiate Data Transformation")
             raise CustomException(e, sys)
-
-
-if __name__ == '__main__':
-    data_transformation = DataTransformation()
-    data_transformation.initiate_data_transformation(train_path="artifacts/train.csv", test_path="artifacts/test.csv")
