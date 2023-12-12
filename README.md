@@ -1,10 +1,8 @@
-# Credit Card Default Prediction
+# Credit Card Default Prediction App
 
-The goal of credit card default prediction is to help credit card companies and lenders to better manage their risk and minimize losses. Overall, credit card default prediction is an important tool for lenders to manage risk and ensure the stability of the credit card industry.
+## OBJECTIVE
+The objective of this project is to create and deploy an application for my classification model. During the model training process, I selected the best classfification model and incorporated it into a pipeline to better predict the risk of credit card payment defaults. 
 
-
-## Problem Statement
-A credit card issuer based in Taiwan wants to learn more about how likely its customers are to default on their payments and the main factors that influence this probability. The issuer's decisions regarding who to issue a credit card to and what credit limit to offer would be informed by this information. The issuer's future strategy, including plans to offer targeted credit products to their customers, would be informed by a better understanding of their current and potential customers as a result of this.
 
 ## Dataset
 This dataset contains information on default payments, demographic factors, credit data, history of payment, and bill statements of credit card clients in Taiwan from April 2005 to September 2005. 
@@ -14,7 +12,7 @@ https://archive.ics.uci.edu/dataset/350/default+of+credit+card+clients
 
 or Kaggle website at https://www.kaggle.com/code/selener/prediction-of-credit-card-default/input
 
-## Data Pipeline
+## Machine Learning Pipeline
 1. Analyze Data: In this initial step, we attempted to comprehend the data and searched for various available features. We looked for things like the shape of the data, the data types of each feature, a statistical summary, etc. at this stage.
 2. EDA: EDA stands for Exploratory Data Analysis. It is a process of analyzing and understanding the data. The goal of EDA is to gain insights into the data, identify patterns, and discover relationships and trends. It helps to identify outliers, missing values, and any other issues that may affect the analysis and modeling of the data.
 3. Data Cleaning: Data cleaning is the process of identifying and correcting or removing inaccuracies, inconsistencies, and handling missing values in a dataset. We inspected the dataset for duplicate values. The null value and outlier detection and treatment followed. For the imputation of the null value we used the Mean, Median, and Mode techniques, and for the outliers, we used the Clipping method to handle the outliers without any loss to the data.
