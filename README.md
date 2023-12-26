@@ -48,4 +48,37 @@ MongoDB
 
 ## LIVE
 * https://credit-card-defaults-prediction.streamlit.app/
+ 
+## Uploading records to MongoDB
+```bash
+# making connection with mongo db
+from pymongo.mongo_client import MongoClient
+
+# Create a new client and connect to the server
+uri = <DB URI>
+client = MongoClient(uri)
+
+# Send a ping to confirm a successful connection
+try:
+    client.admin.command('ping')
+    print("Pinged your deployment. You successfully connected to MongoDB!")
+except Exception as e:
+    print(e)
+    
+# Creating DB instances of database which is already created from MongoDB Atlas
+db=client["credit_card_defaults"]
+collection= db['data']
+
+# inserting the records into mongo db
+collection.insert_many(records)
+
+# Retrieve data from the collection
+data = list(collection.find())
+
+# Load data into a Pandas DataFrame
+df = pd.DataFrame(data)
+df.sample(3)
+```
+
+
 
